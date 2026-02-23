@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background: #f4f6f8;
+}
+.app {
+  max-width: 500px;
+  margin: 60px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+  color: #333;
+}
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+form input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+form input:focus {
+  border-color: #4f46e5;
+}
+
+form button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;     
+  background: #4f46e5;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+form button:hover {
+  background: #4338ca;
+}
+
+ul {
+  list-style: none;
+}
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+}
+.completed {
+  text-decoration: line-through;
+  color: #888;
+  cursor: pointer; 
+}
+
+.delete-button{
+  padding: 2px 4px;
+  color: red;
+  border-radius: 3px;
+  border: none;
+}
+.delete-button:hover{
+  background-color: rgb(228, 212, 212);
+}
+
