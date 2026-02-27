@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function NewProject({onAdd}) {
     const [title,setTitle] = useState("");
     const [description,setDescription] = useState("");
-    const [date,setDate] = useState("");
+    const [dueDate,setDate] = useState("");
 
     function handleSubmit(e){
         e.preventDefault();
@@ -46,7 +46,7 @@ export default function NewProject({onAdd}) {
                         <label>DUE DATE</label>
                         <input
                             type="date"
-                            value={date}
+                            value={dueDate}
                             onChange={e => setDate(e.target.value)}
                             required
                         />

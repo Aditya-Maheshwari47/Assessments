@@ -5,8 +5,6 @@ export default function TodoItem({todo, toggleTodo, deleteTodo}){
         >
         <span 
             className= { todo.completed ? "completed" : ""} 
-            onClick={() =>
-                toggleTodo(todo.id)} 
         >
             {todo.text}
         </span>

@@ -1,18 +1,21 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 .app-container {
     display: flex;
     height: 100vh;
 }
 .sidebar {
-    width: 300px;
-    background-color: grey;
+    width: 250px;
+    background-color: rgb(0, 0, 0);
     color: white;
     padding: 40px;
-
-
+}
+.sidebar button{
+    border: none !important;
+    color: white;
+    background-color: black;
 }
 .no-project {
     flex: 1;

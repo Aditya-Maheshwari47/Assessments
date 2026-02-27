@@ -10,20 +10,20 @@ function App() {
     {
       id: 'p1',
       title :"Learning",
-      description : "asdagsddvrere",
-      dueDate:"2026-01-01",
+      description : "Learn three concepts",
+      dueDate:"2026-05-01",
       tasks: []
     },
     { id: 'p2',
       title :"Reading",
-      description :"fdsfeegree",
-      dueDate:"2026-01-01",
+      description :"Read three articles",
+      dueDate:"2026-06-02",
       tasks: []
     }
   ]);
 
   const [selectedProjectId, setSelectedProjectId ] = useState(null); 
-  //null --> no project selected  , // "new" --> creating a new project , //"p1" --> show project
+  //null --> no project selected  , / "new" --> creating a new project , //"p1" --> show project
 
   function handleSelectProject(id){
     setSelectedProjectId(id);
@@ -35,8 +35,10 @@ function App() {
   function handleAddProject(newData){
     const newProject = {
       id: Date.now(),
-      ...newData,
-      task : []
+      title : newData.title,
+      description : newData.description,
+      dueDate : newData.dueDate,
+      tasks : []
     };
     
     setProjects(prevProjects => 
