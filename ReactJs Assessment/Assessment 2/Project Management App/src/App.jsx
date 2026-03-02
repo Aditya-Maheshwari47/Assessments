@@ -16,7 +16,7 @@ function App() {
     },
     { id: 'p2',
       title :"Reading",
-      description :"Read three articles",
+      description :"Read articles",
       dueDate:"2026-06-02",
       tasks: []
     }
@@ -46,10 +46,41 @@ function App() {
 
     setSelectedProjectId(null);
   }
+
+  function handleCancelAddProject() {
+    setSelectedProjectId(null);
+  }
+
   const selectedProject = projects.find(
     (project) => project.id === selectedProjectId
   );
-  
+
+  function handleDeleteProject(){
+    setProjects((prevProjects) =>{
+      return prevProjects.filter((project) => project.id !== selectedProjectId);
+      
+    });
+    setSelectedProjectId(null);
+  }
+
+  function handleAddTasks(taskData){
+    if (taskData.trim().length === 0) {
+    return;
+  }
+    setProjects((prevProjects) =>{
+      return prevProjects.map(project =>{
+        if(project.id === selectedProjectId){
+          return{
+            ...project,
+            tasks : [...project.tasks,{id : Date.now(), description :taskData}],
+          }
+        }
+        return project;
+      });
+    });
+
+  }
+
   return (
     <div className="app-container">
       <SideBar
@@ -57,15 +88,19 @@ function App() {
         onSelectProject = {handleSelectProject}
         onStartAddProject = {handleStartAddProject}
       />
-      {selectedProjectId === null &&  <NoProjectSelected/> }
+      {selectedProjectId === null &&
+        <NoProjectSelected onStartAddProject = {handleStartAddProject}/>}
       {selectedProjectId === "new" && (
         <NewProject
         onAdd = {handleAddProject}
+        onCancel = {handleCancelAddProject}
         />)}
 
       {selectedProject && (
         <ProjectDetails
           project = {selectedProject}
+          onDelete = {handleDeleteProject}
+          onaddTasks = {handleAddTasks}
         />)}
        
     </div>

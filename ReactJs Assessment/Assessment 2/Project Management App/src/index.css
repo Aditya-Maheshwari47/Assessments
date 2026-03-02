@@ -1,14 +1,22 @@
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
+*{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+ul {
+  list-style-type: none;
+}
+
 
 .app-container {
     display: flex;
     height: 100vh;
 }
 .sidebar {
-    width: 250px;
+    width: 300px;
     background-color: rgb(0, 0, 0);
+    border-radius: 0px 20px 0px 0px;
     color: white;
     padding: 40px;
 }
@@ -16,8 +24,117 @@
     border: none !important;
     color: white;
     background-color: black;
+    padding: 7px;
 }
+.sidebar button:hover{
+    background-color: gray;
+    transition: 0.4s;
+    border-radius: 3px;
+}
+.sidebar button#add-project{
+    font-size: large;
+    padding: 10px;
+}
+.sidebar button#project{
+    font-size: medium; 
+}
+
 .no-project {
     flex: 1;
     padding: 40px;
+}
+.no-project-selected {
+    flex: 1;
+    padding: 40px;
+    text-align: center;
+    
+}
+.no-project-selected img{
+    width: 5rem;
+    height: 5rem;
+}
+.no-project-selected button{
+    color: white;
+    padding: 6px;
+    background-color: black;
+    border-radius: 12px;
+
+}
+
+.task-input{
+    display: flex;
+    flex: 1;
+}
+.task-input input{
+    width: 300px;
+    height: 30px;
+    background-color: rgb(218, 213, 213);
+    border: none;
+    border-radius: 2px;
+}
+.task-input button{
+margin-top: 0.8em;
+    margin-left: 2px;
+    background : none;
+    border: white;
+    border-radius: 0.2em;
+    padding: 0.4em;
+border: 0.1em solid black;
+    font-size: 1em;
+}
+.delete{
+      background : none;
+    border: white;
+    border-radius: 0.2em;
+    margin-left: 70%;
+    padding: 0.4em;
+border: 0.1em solid black;
+    font-size: 1em;
+}
+.delete:hover{
+    background-color: rgb(108, 89, 89);
+    color:white;
+    transition: 0.4s;
+}
+.task-input button:hover{
+    background-color: rgb(230, 224, 224);
+    transition: 0.4s;
+}
+.task-list{
+    font-size: 1.2em;
+    background-color: rgb(234, 234, 211);
+}
+#task-item{
+    padding: 6px;
+}
+
+.new-project{
+    padding: 40px;
+    margin: 20px;
+    color:burlywood
+}
+.new-project div{
+    margin: 20px;
+}
+.new-project input{
+    width: 500px;
+    height: 30px;
+    padding: 0.4em;
+    color: black;
+    background-color: rgb(218, 213, 213);
+    border: none;
+    border-radius: 0.3em;
+    
+}
+.new-project button{
+    font-size: 1em;
+    margin-left: 20px;
+    padding: 1em;
+    width: 80px;
+    border-radius: 1em;
+    color: white;
+    background-color: black;
+}
+.new-project button:hover{
+    transform: scale(1.05);
 }

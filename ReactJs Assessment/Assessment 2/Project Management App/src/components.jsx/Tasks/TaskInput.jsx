@@ -9,18 +9,21 @@ export default function TaskInput({addTask}){
         setTask("");
     }
     return(
-    <div>
+    <div className="task-input">
         <form onSubmit={handleSubmit}>
             <div>
-                <input 
+                <input id="input"
                     type="text"
                     value={task}
                     onChange={e => setTask(e.target.value)}
                 />
+                <button id="button" type="submit">
+                    Add task
+                </button>
             </div>
-            <button type="submit">
-                Add task
-            </button>
+        
+
+            
             
 
         </form>
