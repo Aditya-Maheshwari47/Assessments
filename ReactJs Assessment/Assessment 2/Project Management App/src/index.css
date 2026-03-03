@@ -1,11 +1,12 @@
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
-*{
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+* {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 ul {
-  list-style-type: none;
+    list-style-type: none;
 }
 
 
@@ -13,6 +14,7 @@ ul {
     display: flex;
     height: 100vh;
 }
+
 .sidebar {
     width: 300px;
     background-color: rgb(0, 0, 0);
@@ -20,40 +22,47 @@ ul {
     color: white;
     padding: 40px;
 }
-.sidebar button{
+
+.sidebar button {
     border: none !important;
     color: white;
     background-color: black;
     padding: 7px;
 }
-.sidebar button:hover{
+
+.sidebar button:hover {
     background-color: gray;
     transition: 0.4s;
     border-radius: 3px;
 }
-.sidebar button#add-project{
+
+.sidebar button#add-project {
     font-size: large;
     padding: 10px;
 }
-.sidebar button#project{
-    font-size: medium; 
+
+.sidebar button#project {
+    font-size: medium;
 }
 
 .no-project {
     flex: 1;
     padding: 40px;
 }
+
 .no-project-selected {
     flex: 1;
     padding: 40px;
     text-align: center;
-    
+
 }
-.no-project-selected img{
+
+.no-project-selected img {
     width: 5rem;
     height: 5rem;
 }
-.no-project-selected button{
+
+.no-project-selected button {
     color: white;
     padding: 6px;
     background-color: black;
@@ -61,62 +70,87 @@ ul {
 
 }
 
-.task-input{
+.task-input {
     display: flex;
     flex: 1;
 }
-.task-input input{
+
+.task-input input {
     width: 300px;
     height: 30px;
     background-color: rgb(218, 213, 213);
     border: none;
     border-radius: 2px;
 }
-.task-input button{
-margin-top: 0.8em;
+
+.task-input button {
+    margin-top: 0.8em;
     margin-left: 2px;
-    background : none;
+    background: none;
     border: white;
     border-radius: 0.2em;
     padding: 0.4em;
-border: 0.1em solid black;
+    border: 0.1em solid black;
     font-size: 1em;
 }
-.delete{
-      background : none;
+
+.delete {
+    background: none;
     border: white;
     border-radius: 0.2em;
     margin-left: 70%;
     padding: 0.4em;
-border: 0.1em solid black;
+    border: 0.1em solid black;
     font-size: 1em;
 }
-.delete:hover{
+
+.delete:hover {
     background-color: rgb(108, 89, 89);
-    color:white;
+    color: white;
     transition: 0.4s;
 }
-.task-input button:hover{
+
+.task-input button:hover {
     background-color: rgb(230, 224, 224);
     transition: 0.4s;
 }
-.task-list{
+
+.task-list {
     font-size: 1.2em;
     background-color: rgb(234, 234, 211);
+    width: auto;
 }
-#task-item{
+
+.tasks {
+    display: flex;
+    flex: 1;
+}
+
+.tasks button {
+    font-size: 0.8em;
+    border: none;
+    color: red;
+    background-color: rgb(234, 234, 211);
+    margin-left: auto;
+
+}
+
+#task-item {
     padding: 6px;
 }
 
-.new-project{
+
+.new-project {
     padding: 40px;
     margin: 20px;
-    color:burlywood
+    color: burlywood
 }
-.new-project div{
+
+.new-project div {
     margin: 20px;
 }
-.new-project input{
+
+.new-project input {
     width: 500px;
     height: 30px;
     padding: 0.4em;
@@ -124,9 +158,10 @@ border: 0.1em solid black;
     background-color: rgb(218, 213, 213);
     border: none;
     border-radius: 0.3em;
-    
+
 }
-.new-project button{
+
+.new-project button {
     font-size: 1em;
     margin-left: 20px;
     padding: 1em;
@@ -135,6 +170,7 @@ border: 0.1em solid black;
     color: white;
     background-color: black;
 }
-.new-project button:hover{
+
+.new-project button:hover {
     transform: scale(1.05);
 }

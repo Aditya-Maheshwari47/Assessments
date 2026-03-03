@@ -1,0 +1,25 @@
+Project Management
+
+1) Users should be able to:
+
+Add a new project using a form that includes Title, Description, and Due Date.
+View a list of all projects in a sidebar.
+Select a project to view its details.
+Delete a selected project.
+Cancel project creation.
+
+2) Task Management (Inside Each Project)
+ 
+For the selected project, users should be able to:
+Add a new task.
+Delete a task from the project.
+View all tasks related to that project.
+
+3) Requirements
+
+Use React functional components.
+Manage state using useState.
+Use props to pass data and functions between components.
+Implement conditional rendering for different states. 
+Use map() and filter() to handle dynamic project and task lists.
+Ensure each project and task has a unique ID.

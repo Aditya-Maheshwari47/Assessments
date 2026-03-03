@@ -78,7 +78,18 @@ function App() {
         return project;
       });
     });
-
+  }
+  function handleDeleteTask(id){
+    setProjects((prevprojects) =>{
+      return prevprojects.map(project =>{
+        if(project.id === selectedProjectId){
+        return{
+          ...project,
+          tasks: project.tasks.filter((task)=>task.id !==id)
+        }};
+        return project;
+      })
+    })
   }
 
   return (
@@ -101,6 +112,7 @@ function App() {
           project = {selectedProject}
           onDelete = {handleDeleteProject}
           onaddTasks = {handleAddTasks}
+          onDeleteTask = {handleDeleteTask}
         />)}
        
     </div>
