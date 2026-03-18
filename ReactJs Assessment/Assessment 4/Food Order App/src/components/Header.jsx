@@ -6,7 +6,7 @@ export default function Header({qty, openCart}){
                 <img src={LOGO} alt="LOGO IMAGE" />
                 ReactFood
             </h1>
-                <button onClick={openCart}>Cart({qty})</button>
+                <button className='text-button' onClick={openCart}>Cart ({qty})</button>
         </header>
 
     );
