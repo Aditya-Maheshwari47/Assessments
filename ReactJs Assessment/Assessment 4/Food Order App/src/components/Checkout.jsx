@@ -1,6 +1,8 @@
-import { useRef,useEffect, useActionState} from "react";
+import { useRef,useEffect, useActionState, useState} from "react";
+import Success from "./Success";
 
-export default function Checkout({openCheckOut, currentTotal}) {
+export default function Checkout({openCheckOut, currentTotal,selectedMeals}) {
+    const [openSuccess, setOpenSuccess] = useState(false);
     const checkoutRef = useRef();
     
     useEffect(() => {
@@ -11,8 +13,34 @@ export default function Checkout({openCheckOut, currentTotal}) {
         }
     },[openCheckOut])
 
-    function shareFormAction(prevState, formData){
-        const fullName = formData.get('fullName');
+    async function addOrders({name, email, street, postalCode, city}){
+      const response = await fetch('http://localhost:3000/orders', {
+        method: 'POST',
+        headers :{
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          order: {
+            items: selectedMeals.filter(meal => meal.qty > 0),
+            customer: {
+              email,
+              name,
+              street,
+              'postal-code': postalCode,
+              city
+            }
+          }
+        })
+      });
+      
+    if (!response.ok) {
+      throw new Error('Failed to submit order');
+    }
+      return response;
+    }
+
+    async function shareFormAction(prevState, formData){
+        const name = formData.get('fullName');
         const email = formData.get('email');
         const street = formData.get('street');
         const postalCode = formData.get('postalCode');
@@ -20,10 +48,10 @@ export default function Checkout({openCheckOut, currentTotal}) {
         //verify //backend
 
         let errors = [];
-        if(fullName.trim().length === 0){
+        if(name.trim().length === 0){
             errors.push('Enter Full Name')
         }
-        if(!email.includes('@')){
+        if(!email.trim() || !email.includes('@')){
             errors.push('Enter a valid Email.')
         }
         if(!street.trim()){
@@ -40,7 +68,7 @@ export default function Checkout({openCheckOut, currentTotal}) {
             return {
                 errors,
                 enteredValues :{
-                    fullName,
+                    name,
                     email,
                     street,
                     postalCode,
@@ -49,13 +77,38 @@ export default function Checkout({openCheckOut, currentTotal}) {
             }
         }
 
+      try{
+        await addOrders({name, email, street, postalCode, city});
+        checkoutRef.current.close();
+  
+        handleOpenSuccess();
         return {errors : null};
+      }
+      catch (error){
+        return {
+          errors: ['Order failed. Please try again.'],
+          enteredValues: {
+            name,
+            email,
+            street,
+            postalCode,
+            city
+          }
+        };
+      }
+      
     }
 
     
-    const [formState, formAction ] = useActionState(shareFormAction, {errors: null});
+  const [formState, formAction ] = useActionState(shareFormAction, {errors: null});
+
+    function handleOpenSuccess(){
+    setOpenSuccess(true);
+    }
 
   return (
+    <>
+   
     <dialog className="modal" ref={checkoutRef}>
       <h2>Checkout</h2>
       <p>Total Amount : {currentTotal}</p>
@@ -63,7 +116,7 @@ export default function Checkout({openCheckOut, currentTotal}) {
       <form action={formAction}>
         <div className="control">
           <label>Full Name</label>
-          <input type="text" name="fullName" defaultValue={formState.enteredValues?.fullName} />
+          <input type="text" name="fullName" defaultValue={formState.enteredValues?.name} />
         </div>
 
         <div className="control">
@@ -103,9 +156,11 @@ export default function Checkout({openCheckOut, currentTotal}) {
             onClick={() => checkoutRef.current.close()}>
             Close
           </button>
-          <button className="button">Submit Order</button>
+          <button className="button" type="submit">Submit Order</button>
         </div>
       </form>
     </dialog>
+  <Success openSuccess = {openSuccess}/>
+    </>
   );
 }

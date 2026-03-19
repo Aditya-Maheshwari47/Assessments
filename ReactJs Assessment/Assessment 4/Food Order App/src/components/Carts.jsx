@@ -65,6 +65,7 @@ export default function Cart({cartMeal, openCart, addMeal, removeMeal}){
         <Checkout
             openCheckOut = {openCheckOut}
             currentTotal = {currentTotal}
+            selectedMeals= {cartMeal}
         />
 
         </>
