@@ -1,7 +1,11 @@
-import { useRef,useEffect, useActionState, useState} from "react";
+import { CartContext } from "../store/CartContext"; 
+import { useRef,useEffect, useActionState, useState, useContext} from "react";
 import Success from "./Success";
 
-export default function Checkout({openCheckOut, currentTotal,selectedMeals}) {
+export default function Checkout({openCheckOut, currentTotal}) {
+
+    const { selectedMeals } = useContext(CartContext);
+
     const [openSuccess, setOpenSuccess] = useState(false);
     const checkoutRef = useRef();
     

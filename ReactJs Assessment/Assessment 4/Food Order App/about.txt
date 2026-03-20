@@ -1,0 +1,22 @@
+Food Order App
+
+Features
+
+Users can view meals fetched from the backend using HTTP GET requests.
+Meals can be added to the cart, and their quantity can be increased or decreased.
+
+The cart modal displays selected meals along with total quantity and total price.
+Users can proceed to checkout, enter their details, and place an order.
+
+Orders are sent to the backend using HTTP POST requests, and a success message is shown after submission.
+
+State Management
+
+Cart data is shared across components using the Context API.
+Local UI state is managed using useState.
+Meals are fetched using useEffect.
+Form submission is handled using useActionState.
+Dialog modals are controlled using useRef.
+
+Array methods like map, filter, and reduce are used to handle dynamic data.
+Conditional rendering is used for modals and form validation.

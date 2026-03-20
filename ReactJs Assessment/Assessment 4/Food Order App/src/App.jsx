@@ -1,47 +1,47 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Header from "./components/Header";
 import Cart from "./components/Carts";
+import { CartContext } from "./store/CartContext";
 
 function App() {
+   const { handleAddMeal } = useContext(CartContext);
   const[showMeal, setShowMeal] = useState([]);
-  const [selectedMeals , setSelectedMeals] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [totalCartQty, setTotalCartQty] = useState(0);
- 
-  
-  function handleAddMeal(meal){
-    setTotalCartQty((prevQty) => prevQty + 1);
-    setSelectedMeals((prevMeals) =>{
 
-      const existingMeal = prevMeals.find(m => m.id === meal.id);
-        if (existingMeal) {
-          return prevMeals.map(m =>
-          m.id === meal.id ? { ...m, qty: m.qty + 1 }: m
-      );
-      }
-      return [
-        ...prevMeals,
-        { ...meal, qty: 1 }
-      ];
-    });
-  }
+  // const [selectedMeals , setSelectedMeals] = useState([]);
+  // const [totalCartQty, setTotalCartQty] = useState(0);
+ 
+  // function handleAddMeal(meal){
+  //   setTotalCartQty((prevQty) => prevQty + 1);
+  //   setSelectedMeals((prevMeals) =>{
+
+  //     const existingMeal = prevMeals.find(m => m.id === meal.id);
+  //       if (existingMeal) {
+  //         return prevMeals.map(m =>
+  //         m.id === meal.id ? { ...m, qty: m.qty + 1 }: m
+  //     );
+  //     }
+  //     return [
+  //       ...prevMeals,
+  //       { ...meal, qty: 1 }
+  //     ];
+  //   });
+  // }
+  // function handleRemoveMeal(meal){
+  //   if(meal.qty > 0) {
+  //     setTotalCartQty((prevQty) => prevQty - 1);
+  //     setSelectedMeals((prevMeals) =>
+  //       {
+  //           return prevMeals.map(m =>
+  //           m.id === meal.id ? { ...m, qty: m.qty - 1 }: m
+  //         );  
+  //       });
+  //   }
+  // }
   
   function handleOpenCart(){
     setIsCartOpen((prev) => !prev);
   }
-
-  function handleRemoveMeal(meal){
-    if(meal.qty > 0) {
-      setTotalCartQty((prevQty) => prevQty - 1);
-      setSelectedMeals((prevMeals) =>
-        {
-            return prevMeals.map(m =>
-            m.id === meal.id ? { ...m, qty: m.qty - 1 }: m
-          );  
-        });
-    }
-  }
-
 
   useEffect (() => {
     async function fetchMeals() {
@@ -54,14 +54,10 @@ function App() {
   return (
     <>
       <Header
-      qty = {totalCartQty}
       openCart = {handleOpenCart}
       />
       <Cart
-      cartMeal = {selectedMeals}
       openCart = {isCartOpen}
-      addMeal = {handleAddMeal}
-      removeMeal = {handleRemoveMeal}
       />
       <ul id="meals">
         {showMeal.map((meal) => (
@@ -76,9 +72,6 @@ function App() {
           </li>
         ))}
       </ul>
-  
-
-
     </>
   );
 }
