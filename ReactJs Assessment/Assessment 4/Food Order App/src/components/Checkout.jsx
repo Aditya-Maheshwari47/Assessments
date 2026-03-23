@@ -2,9 +2,9 @@ import { CartContext } from "../store/CartContext";
 import { useRef,useEffect, useActionState, useState, useContext} from "react";
 import Success from "./Success";
 
-export default function Checkout({openCheckOut, currentTotal}) {
+export default function Checkout({openCheckOut, currentTotal, dialogRef}) {
 
-    const { selectedMeals } = useContext(CartContext);
+    const { selectedMeals, handleClearCart } = useContext(CartContext);
 
     const [openSuccess, setOpenSuccess] = useState(false);
     const checkoutRef = useRef();
@@ -12,6 +12,7 @@ export default function Checkout({openCheckOut, currentTotal}) {
     useEffect(() => {
         if (openCheckOut) {
             checkoutRef.current.showModal();
+            dialogRef.current.close();
         } else {
             checkoutRef.current.close();
         }
@@ -86,6 +87,8 @@ export default function Checkout({openCheckOut, currentTotal}) {
         checkoutRef.current.close();
   
         handleOpenSuccess();
+        handleClearCart();
+
         return {errors : null};
       }
       catch (error){
@@ -164,7 +167,7 @@ export default function Checkout({openCheckOut, currentTotal}) {
         </div>
       </form>
     </dialog>
-  <Success openSuccess = {openSuccess}/>
+    <Success openSuccess={openSuccess} setOpenSuccess={setOpenSuccess} />    
     </>
   );
 }

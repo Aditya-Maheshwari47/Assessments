@@ -4,7 +4,8 @@ export const CartContext = createContext({
     selectedMeals : [],
     totalCartQty: 0,
     handleAddMeal: () => {},
-    handleRemoveMeal: () => {}
+    handleRemoveMeal: () => {},
+    handleClearCart:() => {}
 });
 
 export function CartProvider({children}){
@@ -40,12 +41,18 @@ export function CartProvider({children}){
     }
   }
 
+  function handleClearCart(){
+    setSelectedMeals([]);
+    setTotalCartQty(0);
+  }
   const value = {
     selectedMeals,
     totalCartQty,
     handleAddMeal,
-    handleRemoveMeal
+    handleRemoveMeal,
+    handleClearCart
   };
+
 
   return <CartContext.Provider value={value}>
     {children}

@@ -68,13 +68,12 @@ export default function Cart({openCart}){
                 </button>
             </div>
 
-
         </dialog>
         <Checkout
             openCheckOut = {openCheckOut}
             currentTotal = {currentTotal}
+            dialogRef = {dialogRef}
         />
-
         </>
     )
 

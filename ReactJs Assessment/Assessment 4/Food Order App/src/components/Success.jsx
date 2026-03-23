@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react"
 
-export default function Success({openSuccess}) {
+export default function Success({openSuccess,setOpenSuccess}) {
     const successRef = useRef();
     useEffect(() => {
         if (openSuccess) {
@@ -9,6 +9,11 @@ export default function Success({openSuccess}) {
             successRef.current.close();
         }
     },[openSuccess])
+
+     function handleClose() {
+    setOpenSuccess(false); 
+  }
+
     return (
         <>
             <dialog className="modal" ref={successRef} >
@@ -16,7 +21,7 @@ export default function Success({openSuccess}) {
                 <p>Your order was submitted successfully </p>
                 <p>We will get back to you with more details via email within the next few minutes.</p>
                 <div className="modal-actions">
-                    <button className="button" onClick={() =>successRef.current.close()}>Okay</button>
+                    <button className="button" onClick={handleClose}>Okay</button>
 
                 </div>
             </dialog>
